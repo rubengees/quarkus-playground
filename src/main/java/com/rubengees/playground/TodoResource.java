@@ -26,6 +26,8 @@ public class TodoResource {
     @POST
     @Transactional
     public void create(Todo todo) {
+        LOG.info("Received new todo: " + todo.toString());
+
         new TodoEntity(todo).persist();
     }
 }
