@@ -1,6 +1,6 @@
 # Quarkus Playground
 
-This is a simple playground for [Quarkus](quarkus.io).
+This is a simple playground for [Quarkus](https://quarkus.io).
 
 It exposes a `/todos` API on `localhost:8080`:
 
