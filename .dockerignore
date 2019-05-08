@@ -1,4 +1,2 @@
-*
-!target/*-runner
-!target/*-runner.jar
-!target/lib/*
+.mvn/wrapper/maven-wrapper.jar
+target
