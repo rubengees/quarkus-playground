@@ -25,4 +25,25 @@ public class TodoResourceTest {
                 .statusCode(200)
                 .body("", hasSize(1));
     }
+
+    @Test
+    public void testTodosDeleteEndpoint() {
+        given()
+                .header("Content-Type", "application/json")
+                .body(new Todo("Test", "description", true), ObjectMapperType.JACKSON_2)
+                .when().post("/todos")
+                .then()
+                .statusCode(204);
+
+        given()
+                .when().delete("/todos/Test")
+                .then()
+                .statusCode(204);
+
+        given()
+                .when().get("/todos")
+                .then()
+                .statusCode(200)
+                .body("", hasSize(0));
+    }
 }
