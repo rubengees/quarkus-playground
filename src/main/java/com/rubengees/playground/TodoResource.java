@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,5 +30,18 @@ public class TodoResource {
         LOG.info("Received new todo: " + todo.toString());
 
         new TodoEntity(todo).persist();
+    }
+
+    @DELETE
+    @Transactional
+    @Path("{name}")
+    public Response delete(@PathParam("name") String name) {
+        LOG.info("Deleting todos with name: " + name);
+
+        if (TodoEntity.delete("name", name) <= 0) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        } else {
+            return Response.noContent().build();
+        }
     }
 }
